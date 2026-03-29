@@ -1,48 +1,66 @@
 # jasmin-manage-ui
 
-[React](https://reactjs.org/) user interface for the JASMIN Projects Portal,
-which consumes the [JASMIN Manage API](https://github.com/cedadev/jasmin-manage).
+`jasmin-manage-ui` is a React web interface for the JASMIN Projects Portal. It consumes the JASMIN Manage API and provides project, consortium, service, and requirement management views for portal users.
 
-## Setting up a development environment
+## Scope
 
-First, make sure you have a local version of the
-[JASMIN Manage API](https://github.com/cedadev/jasmin-manage)
-running on `http://localhost:8000`, as per the instructions in the `README`.
+The application includes UI flows for:
 
-To install and run this user interface, first you will need [Node](https://nodejs.dev/) and
-[yarn](https://yarnpkg.com/) installed.
+- browsing project and consortium records
+- viewing project detail pages
+- creating and joining projects
+- reviewing services and requirements
+- approving, editing, and deleting requirement items
+- handling REST-backed resource forms and instance actions
 
-Then check out the code:
+## Stack
 
-```sh
-git clone https://github.com/cedadev/jasmin-manage-ui.git
+- React 17
+- Create React App / `react-scripts`
+- React Router
+- React Bootstrap
+- `fwtheme-react-jasmin`
+- Yarn 4
+- `http-proxy-middleware` for local API proxying
+
+## Repository structure
+
+```text
+src/api/             API wrappers
+src/Components/      App pages, detail views, tables, and action components
+src/rest-resource/   Shared resource hooks, fetch helpers, and form components
+src/css/             Project-specific styling
+src/setupProxy.js    Local API proxy configuration
+```
+
+## Local development
+
+### Requirements
+
+- Node.js
+- Yarn
+- A local JASMIN Manage API instance running on `http://localhost:8000`
+
+### Setup
+
+```bash
+git clone https://github.com/StTysh/jasmin-manage-ui.git
 cd jasmin-manage-ui
-```
-
-Install the dependencies using `yarn`:
-
-```sh
-yarn install 
-```
-
-Then start the development server:
-
-```sh
+yarn install
 yarn start
 ```
 
-This will start the JASMIN Projects Portal UI at `http://localhost:3000`.
+The UI starts on `http://localhost:3000`.
 
+## Available scripts
 
-If you have issues installing the version of yarn in all places might need updating:
+```bash
+yarn start   # start development server
+yarn build   # create production build
+yarn test    # run tests
 ```
-yarn set version latest
-yarn upgrade-interactive  
-```
-maybe the above in the dependancies on github and push to github, because yarn probably needs to be the same/close in all places
 
-And maybe
-```
-rm -rf node_modules 
-rm yarn.lock 
-```
+## Notes
+
+- The repository expects the companion JASMIN Manage API to be available locally during development.
+- The UI is built around resource-oriented views and actions rather than a standalone backend.
